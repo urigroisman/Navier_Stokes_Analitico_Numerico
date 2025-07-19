@@ -1,2 +1,69 @@
-.DS_Store
+# === LaTeX / TeX ===
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.pdf
+
+# === Jupyter Notebooks ===
 .ipynb_checkpoints/
+
+# === Julia ===
+*.jl.cov
+*.jl.*.cov
+*.jl.*.gcov
+*.jl.prof
+*.ji
+.julia/
+Manifest.toml
+Project.toml
+*.jl~
+
+# === Fortran ===
+*.mod
+*.o
+*.obj
+*.exe
+*.out
+*.f90~
+*.f95~
+*.f03~
+*.f08~
+
+# === C++ ===
+*.o
+*.out
+*.obj
+*.exe
+*.gch
+*.pch
+*.cpp~
+*.cxx~
+*.h.gch
+
+# === Compiladores y editores ===
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+*.temp
+
+# === macOS ===
+.DS_Store
+
+# === VSCode ===
+.vscode/
+
+# === Conda / Entornos virtuales ===
+.env/
+.venv/
+__pycache__/
+*.py[cod]
