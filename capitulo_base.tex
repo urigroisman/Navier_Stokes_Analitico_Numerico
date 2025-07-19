@@ -1,0 +1,52 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{mathpazo}
+\usepackage{float}
+\usepackage{hyperref}
+
+\geometry{margin=2.5cm}
+\linespread{1.05}
+\setlength{\parskip}{0.5em}
+
+\title{Título del Capítulo}
+\author{Autor}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+
+Este documento sirve como plantilla base para redactar capítulos dentro del proyecto \texttt{Navier\_Stokes\_Analitico\_Numerico}. Aquí podés comenzar a escribir el contenido matemático o físico en español técnico.
+
+\section{Sección de ejemplo}
+
+Un ejemplo de ecuación alineada:
+
+\begin{align}
+\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) &= 0, \\
+\frac{\partial (\rho \mathbf{v})}{\partial t} + \nabla \cdot (\rho \mathbf{v} \otimes \mathbf{v}) &= -\nabla p + \mu \Delta \mathbf{v}.
+\end{align}
+
+\section{Figuras y referencias}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{ruta/figura.pdf}
+\caption{Ejemplo de figura}
+\label{fig:ejemplo}
+\end{figure}
+
+Podés referenciar la Figura~\ref{fig:ejemplo} o ecuaciones como la (1).
+
+\section{Notas finales}
+
+Recordá que al guardar, se compila automáticamente con \texttt{latexmk} si usás VS Code y LaTeX Workshop.
+
+\end{document}

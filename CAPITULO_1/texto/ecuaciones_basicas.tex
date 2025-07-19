@@ -1,0 +1,125 @@
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{mathpazo}        % Fuente Palatino
+\linespread{1.05}            % Espaciado ampliado
+\setlength{\parskip}{0.5em}  % Espacio entre párrafos
+\geometry{margin=2.5cm}
+
+\title{1\quad Ecuaciones Básicas}
+\author{Traducción técnica del texto de Feistauer (2006)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1\quad Ecuaciones Básicas}
+
+Los problemas de dinámica de fluidos juegan un papel importante en muchas áreas de la ciencia y la tecnología. Podemos mencionar, por ejemplo:
+
+\begin{itemize}
+  \item la industria aeronáutica,
+  \item la ingeniería mecánica,
+  \item la turbomaquinaria,
+  \item la industria naval,
+  \item la ingeniería civil,
+  \item la ingeniería química,
+  \item la industria alimentaria,
+  \item la protección ambiental,
+  \item la meteorología,
+  \item la oceanografía,
+  \item la medicina.
+\end{itemize}
+
+La visualización del flujo puede obtenerse mediante:
+\begin{enumerate}
+  \item experimentos (por ejemplo, en túneles de viento), los cuales resultan costosos y prolongados, y a veces imposibles;
+  \item modelos matemáticos y su realización a través de métodos numéricos en computadoras modernas. La simulación numérica de problemas de flujo constituye la Dinámica de Fluidos Computacional (CFD). Su objetivo es obtener resultados comparables con los de túneles de viento y reemplazar experimentos extensos y costosos.
+\end{enumerate}
+
+\section*{1.1\quad Ecuaciones Gobernantes}
+
+Sea $\Omega \subset \mathbb{R}^N$, con $N = 1,2,3$, el dominio ocupado por el fluido, y sea $(0,T) \subset \mathbb{R}$ un intervalo temporal durante el cual se observa el movimiento del fluido. Para simplificar, suponemos que $\Omega$ es independiente del tiempo.
+
+\subsection*{1.1.1\quad Descripción del flujo}
+
+Existen dos maneras de describir el movimiento del fluido: la formulación \textit{lagrangiana} y la \textit{euleriana}. Aquí utilizamos la descripción euleriana, basada en la determinación de la velocidad $\mathbf{v}(x,t) = (v_1(x,t), \ldots, v_N(x,t))$ de la partícula de fluido que pasa por el punto $x$ en el instante $t$.
+
+Utilizaremos la siguiente notación estándar:
+\begin{itemize}
+  \item $\rho$: densidad del fluido,
+  \item $p$: presión,
+  \item $\theta$: temperatura absoluta.
+\end{itemize}
+Estas cantidades son denominadas \textit{variables de estado}.
+
+La formulación matemática se basa en las leyes fundamentales de conservación: de masa, de momento lineal y de energía.
+
+\subsection*{1.1.2\quad Ecuación de continuidad}
+
+La forma diferencial de la ley de conservación de la masa es:
+\begin{equation}
+\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0, \quad t \in (0,T),\ x \in \Omega.
+\end{equation}
+
+\subsection*{1.1.3\quad Ecuaciones del movimiento}
+
+La ley de conservación del momento lineal se expresa como:
+\begin{equation}
+\frac{\partial}{\partial t}(\rho v_i) + \nabla \cdot (\rho v_i \mathbf{v}) = \rho f_i + \sum_{j=1}^N \frac{\partial \tau_{ji}}{\partial x_j}, \quad i = 1,\ldots,N,
+\end{equation}
+o, de forma vectorial,
+\begin{equation}
+\frac{\partial}{\partial t}(\rho \mathbf{v}) + \nabla \cdot (\rho \mathbf{v} \otimes \mathbf{v}) = \rho \mathbf{f} + \nabla \cdot \mathbf{T},
+\end{equation}
+donde $\tau_{ij}$ son las componentes del tensor de esfuerzos $\mathbf{T}$, y $\mathbf{f}$ es la densidad de fuerzas externas por unidad de masa.
+
+\subsection*{1.1.4\quad Conservación del momento angular}
+
+\textbf{Teorema 1.1.} La ley de conservación del momento angular es válida si y solo si el tensor de esfuerzos $\mathbf{T}$ es simétrico.
+
+\subsection*{1.1.5\quad Las ecuaciones de Navier--Stokes}
+
+Las relaciones entre el tensor de esfuerzos y otras variables (principalmente la velocidad y sus derivadas) constituyen las denominadas \textit{leyes reológicas}.
+
+Para un fluido invíscido:
+\begin{equation}
+\mathbf{T} = -p \mathbf{I},
+\end{equation}
+donde $\mathbf{I}$ es el tensor identidad.
+
+En un fluido viscoso, se introduce una contribución adicional $\mathbf{T}'$ correspondiente a los esfuerzos de cizalla:
+\begin{equation}
+\mathbf{T} = -p \mathbf{I} + \mathbf{T}'.
+\end{equation}
+
+Según los postulados de Stokes, se tiene:
+\begin{equation}
+\mathbf{T} = (-p + \lambda \nabla \cdot \mathbf{v}) \mathbf{I} + 2\mu \mathbf{D}(\mathbf{v}),
+\end{equation}
+donde $\lambda$ y $\mu$ son los coeficientes de viscosidad de segundo y primer orden, respectivamente, y
+\begin{equation}
+D_{ij}(\mathbf{v}) = \frac{1}{2} \left( \frac{\partial v_i}{\partial x_j} + \frac{\partial v_j}{\partial x_i} \right)
+\end{equation}
+es el tensor de deformación por tasa de esfuerzo.
+
+Sustituyendo en las ecuaciones del movimiento, obtenemos el sistema de Navier--Stokes:
+\begin{equation}
+\frac{\partial}{\partial t}(\rho \mathbf{v}) + \nabla \cdot (\rho \mathbf{v} \otimes \mathbf{v}) = \rho \mathbf{f} - \nabla p + \nabla (\lambda \nabla \cdot \mathbf{v}) + \nabla \cdot (2\mu \mathbf{D}(\mathbf{v})).
+\end{equation}
+
+\subsection*{1.1.6\quad Propiedades de los coeficientes de viscosidad}
+
+De la teoría cinética de los gases se deduce:
+\begin{equation}
+\mu \geq 0, \qquad 3\lambda + 2\mu \geq 0.
+\end{equation}
+En gases monoatómicos, se tiene $3\lambda + 2\mu = 0$, condición comúnmente utilizada también en gases más complejos.
+
+\end{document}
