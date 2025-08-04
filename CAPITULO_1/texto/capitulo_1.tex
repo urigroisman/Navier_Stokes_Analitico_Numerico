@@ -1,0 +1,229 @@
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{mathpazo}        % Fuente Palatino
+\linespread{1.05}            % Espaciado ampliado
+\setlength{\parskip}{0.5em}  % Espacio entre párrafos
+\geometry{margin=2.5cm}
+
+\title{1\quad Ecuaciones Básicas}
+\author{Traducción técnica del texto de Feistauer (2006)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1\quad Ecuaciones Básicas}
+
+Los problemas de dinámica de fluidos juegan un papel importante en muchas áreas de la ciencia y la tecnología. Podemos mencionar, por ejemplo:
+
+\begin{itemize}
+  \item la industria aeronáutica,
+  \item la ingeniería mecánica,
+  \item la turbomaquinaria,
+  \item la industria naval,
+  \item la ingeniería civil,
+  \item la ingeniería química,
+  \item la industria alimentaria,
+  \item la protección ambiental,
+  \item la meteorología,
+  \item la oceanografía,
+  \item la medicina.
+\end{itemize}
+
+La visualización del flujo puede obtenerse mediante:
+\begin{enumerate}
+  \item experimentos (por ejemplo, en túneles de viento), los cuales resultan costosos y prolongados, y a veces imposibles;
+  \item modelos matemáticos y su realización a través de métodos numéricos en computadoras modernas. La simulación numérica de problemas de flujo constituye la Dinámica de Fluidos Computacional (CFD). Su objetivo es obtener resultados comparables con los de túneles de viento y reemplazar experimentos extensos y costosos.
+\end{enumerate}
+
+\section*{1.1\quad Ecuaciones Gobernantes}
+
+Sea $\Omega \subset \mathbb{R}^N$, con $N = 1,2,3$, el dominio ocupado por el fluido, y sea $(0,T) \subset \mathbb{R}$ un intervalo temporal durante el cual se observa el movimiento del fluido. Para simplificar, suponemos que $\Omega$ es independiente del tiempo.
+
+\subsection*{1.1.1\quad Descripción del flujo}
+
+Existen dos maneras de describir el movimiento del fluido: la formulación \textit{lagrangiana} y la \textit{euleriana}. Aquí utilizamos la descripción euleriana, basada en la determinación de la velocidad $\mathbf{v}(x,t) = (v_1(x,t), \ldots, v_N(x,t))$ de la partícula de fluido que pasa por el punto $x$ en el instante $t$.
+
+Utilizaremos la siguiente notación estándar:
+\begin{itemize}
+  \item $\rho$: densidad del fluido,
+  \item $p$: presión,
+  \item $\theta$: temperatura absoluta.
+\end{itemize}
+Estas cantidades son denominadas \textit{variables de estado}.
+
+La formulación matemática se basa en las leyes fundamentales de conservación: de masa, de momento lineal y de energía.
+
+\subsection*{1.1.2\quad Ecuación de continuidad}
+
+La forma diferencial de la ley de conservación de la masa es:
+\begin{equation}
+\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0, \quad t \in (0,T),\ x \in \Omega.
+\end{equation}
+
+\subsection*{1.1.3\quad Ecuaciones del movimiento}
+
+La ley de conservación del momento lineal se expresa como:
+\begin{equation}
+\frac{\partial}{\partial t}(\rho v_i) + \nabla \cdot (\rho v_i \mathbf{v}) = \rho f_i + \sum_{j=1}^N \frac{\partial \tau_{ji}}{\partial x_j}, \quad i = 1,\ldots,N,
+\end{equation}
+o, de forma vectorial,
+\begin{equation}
+\frac{\partial}{\partial t}(\rho \mathbf{v}) + \nabla \cdot (\rho \mathbf{v} \otimes \mathbf{v}) = \rho \mathbf{f} + \nabla \cdot \mathbf{T},
+\end{equation}
+donde $\tau_{ij}$ son las componentes del tensor de esfuerzos $\mathbf{T}$, y $\mathbf{f}$ es la densidad de fuerzas externas por unidad de masa.
+
+\subsection*{1.1.4\quad Conservación del momento angular}
+
+\textbf{Teorema 1.1.} La ley de conservación del momento angular es válida si y solo si el tensor de esfuerzos $\mathbf{T}$ es simétrico.
+
+\subsection*{1.1.5\quad Las ecuaciones de Navier--Stokes}
+
+Las relaciones entre el tensor de esfuerzos y otras variables (principalmente la velocidad y sus derivadas) constituyen las denominadas \textit{leyes reológicas}.
+
+Para un fluido invíscido:
+\begin{equation}
+\mathbf{T} = -p \mathbf{I},
+\end{equation}
+donde $\mathbf{I}$ es el tensor identidad.
+
+En un fluido viscoso, se introduce una contribución adicional $\mathbf{T}'$ correspondiente a los esfuerzos de cizalla:
+\begin{equation}
+\mathbf{T} = -p \mathbf{I} + \mathbf{T}'.
+\end{equation}
+
+Según los postulados de Stokes, se tiene:
+\begin{equation}
+\mathbf{T} = (-p + \lambda \nabla \cdot \mathbf{v}) \mathbf{I} + 2\mu \mathbf{D}(\mathbf{v}),
+\end{equation}
+donde $\lambda$ y $\mu$ son los coeficientes de viscosidad de segundo y primer orden, respectivamente, y
+\begin{equation}
+D_{ij}(\mathbf{v}) = \frac{1}{2} \left( \frac{\partial v_i}{\partial x_j} + \frac{\partial v_j}{\partial x_i} \right)
+\end{equation}
+es el tensor de deformación por tasa de esfuerzo.
+
+Sustituyendo en las ecuaciones del movimiento, obtenemos el sistema de Navier--Stokes:
+\begin{equation}
+\frac{\partial}{\partial t}(\rho \mathbf{v}) + \nabla \cdot (\rho \mathbf{v} \otimes \mathbf{v}) = \rho \mathbf{f} - \nabla p + \nabla (\lambda \nabla \cdot \mathbf{v}) + \nabla \cdot (2\mu \mathbf{D}(\mathbf{v})).
+\end{equation}
+
+\section*{1.1.6 Propiedades de los coeficientes de viscosidad}
+
+Aquí $\mu$ y $\lambda$ son llamados el primer y segundo coeficiente de viscosidad, respectivamente. $\mu$ también se denomina viscosidad dinámica. En la teoría cinética de gases se derivan las condiciones
+
+\[
+\mu \geq 0, \quad 3\lambda + 2\mu \geq 0.
+\]
+
+Para gases monoatómicos, se cumple $3\lambda + 2\mu = 0$. Esta condición se utiliza usualmente incluso en el caso de gases más complejos.
+
+\subsection*{1.1.7 La ecuación de energía}
+
+La ley de conservación de la energía se expresa mediante la ecuación de energía. Para ello se define la energía total
+
+\[
+E = \rho\left(e + \frac{|v|^2}{2}\right),
+\]
+
+donde $e$ es la energía interna específica. La ecuación de energía tiene la forma
+
+\[
+\frac{\partial E}{\partial t} + \nabla \cdot (E \, v) = \rho f \cdot v + \nabla \cdot (T v) + \rho q - \nabla \cdot q.
+\]
+
+Para un fluido newtoniano se tiene
+
+\[
+\frac{\partial E}{\partial t} + \nabla \cdot (E \, v) = \rho f \cdot v - \nabla \cdot (p v) + \nabla \cdot (\lambda v \, \nabla \cdot v) + \nabla \cdot (2\mu D(v)v) + \rho q - \nabla \cdot q,
+\]
+
+donde $q$ es la densidad de fuentes térmicas y $q$ el flujo de calor, el cual depende de la temperatura según la ley de Fourier:
+
+\[
+q = -k \nabla \theta,
+\]
+
+donde $k \geq 0$ es el coeficiente de conductividad térmica.
+
+\section*{1.2 Relaciones termodinámicas}
+
+Para completar el sistema de leyes de conservación, deben incluirse ecuaciones adicionales derivadas de la termodinámica.
+
+La temperatura absoluta $\theta$, la densidad $\rho$ y la presión $p$ se denominan variables de estado. Todas estas cantidades son funciones positivas. El gas se caracteriza por la ecuación de estado
+
+\[
+p = p(\rho, \theta),
+\]
+
+y la relación
+
+\[
+e = e(\rho, \theta).
+\]
+
+Consideraremos el llamado gas perfecto (o gas ideal), cuyas variables de estado satisfacen la ecuación de estado
+
+\[
+p = R \theta \rho,
+\]
+
+donde $R > 0$ es la constante del gas, la cual puede expresarse como
+
+\[
+R = c_p - c_v,
+\]
+
+donde $c_p$ y $c_v$ son los calores específicos a presión y volumen constantes, respectivamente. Los experimentos muestran que $c_p > c_v$, por lo que $R > 0$ y $c_p$, $c_v$ son constantes en un amplio rango de temperaturas. La cantidad
+
+\[
+\gamma = \frac{c_p}{c_v} > 1
+\]
+
+se denomina constante adiabática de Poisson. Por ejemplo, para el aire, $\gamma = 1.4$. La energía interna de un gas perfecto está dada por
+
+\[
+e = c_v \theta.
+\]
+
+\subsection*{1.2.1 Entropía}
+
+Una de las cantidades termodinámicas importantes es la entropía $S$, definida por la relación
+
+\[
+\theta \, dS = de + p \, dV,
+\]
+
+donde $V = \frac{1}{\rho}$ es el llamado volumen específico. Esta identidad se deduce de la termodinámica bajo la suposición de que la energía interna es una función de $S$ y $V$: $e = e(S, V)$, lo que explica el significado de los diferenciales.
+
+\textbf{Teorema 1.3.} Para un gas perfecto se tiene
+
+\[
+S = c_v \ln \left( \frac{p/p_0}{(\rho/\rho_0)^\gamma} \right) + \text{constante},
+\]
+
+donde $p_0$ y $\rho_0$ son valores de referencia fijos de presión y densidad.
+
+\subsection*{1.2.2 Flujo barotrópico}
+
+Se dice que el flujo es barotrópico si la presión puede expresarse como una función de la densidad:
+
+\[
+p = p(\rho),
+\]
+
+lo cual implica que $p(x,t) = p(\rho(x,t))$, o más brevemente, $p = p \circ \rho$. Suponemos que
+
+\[
+p : (0, +\infty) \to (0, +\infty),
+\]
+
+y que existe su derivada continua.
+
+\end{document}
